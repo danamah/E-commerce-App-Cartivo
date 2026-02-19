@@ -1,0 +1,102 @@
+{
+  "Common": {
+    "changeLanguage": "Change language"
+  },
+  "welcome": "welcome",
+  "addToCart": "Add To Cart",
+  "Navbar": {
+    "shipping": "Free Shipping on Orders 500 EGP",
+    "newArrivals": "New Arrivals Daily",
+    "login": "Login",
+    "register": "Register",
+    "home": "Home",
+    "products": "Products",
+    "categories": "Categories",
+    "allCategories": "All Categories",
+    "womenFashion": "Women's Fashion",
+    "menFashion": "Men's Fashion",
+    "electronics": "Electronics",
+    "books": "Books",
+    "brands": "Brands",
+    "help": "Help",
+    "supportTime": "24/7",
+    "searchPlaceholder": "Search for products, brands and more"
+  },
+  "NotFound": {
+    "oops": "Oops",
+    "pageNotFound": "This Page is not found",
+    "description": "It looks like you've ventured into uncharted territory. The page you're searching for might have been moved or doesn't exist.",
+    "goHome": "Go To Hompage"
+  },
+  "CarouselHome": {
+    "title1": "Discover the Latest Products",
+    "subtitle1": "Shop comfortably from home",
+    "cta1": "Shop Now",
+    "deals1": "View Details",
+    "title2": "Unmissable Deals",
+    "subtitle2": "Discounts up to 70% off",
+    "cta2": "View Offers",
+    "deals2": "Discover Offers",
+    "title3": "Fast & Secure Delivery",
+    "subtitle3": "Within 24–48 hours",
+    "cta3": "Order Now",
+    "deals3": "Delivery Info"
+  },
+  "OffersSection": {
+    "badge": "Special Offer",
+    "card1": {
+      "title": "Fresh Organic Fruits",
+      "description": "Get up to 40% off on selected organic fruits",
+      "discount": "40% OFF",
+      "useCode": "Use code:",
+      "code": "ORGANIC40",
+      "button": "Shop Now"
+    },
+    "card2": {
+      "title": "Exotic Vegetables",
+      "description": "Discover our latest collection of premium vegetables",
+      "discount": "25% OFF",
+      "useCode": "Use code:",
+      "code": "FRESH25",
+      "button": "Explore Now"
+    }
+  },
+  "Newsletter": {
+    "badge": "Newsletter",
+    "subscribers": "50,000+ subscribers",
+    "title1": "Get the Latest Updates",
+    "title2": "Delivered to You",
+    "description": "Weekly tips, seasonal offers & exclusive member deals.",
+    "feature1": "Fresh Picks Weekly",
+    "feature2": "Free Delivery Codes",
+    "feature3": "Members-Only Deals",
+    "placeholder": "you@example.com",
+    "subscribe": "Subscribe",
+    "note": "Unsubscribe anytime. No spam, ever."
+  },
+  "MobileApp":{
+    "badge":"Mobile App",
+    "title":"Shop Faster on Our App",
+    "subtitle":"Get app-exclusive deals & 15% off your first order.",
+    "down":"Download Now",
+    "store1":"Apple Store",
+    "store2":"Google Play"
+  },
+  "AllProducts":{
+    "header":"All Products",
+    "para":"Explore our complete product collection"
+  },
+  "AllCategories":{
+    "header":"All Categories",
+    "para":"Browse our wide range of product categories"
+  },
+  "AllBrands":{
+    "header":"Top Brands",
+    "para":"Shop from your favorite brands"
+  },
+  "HomeCate":{
+    "title":"Shop By ",
+    "sub":"Category",
+    "button":"View All"
+  }
+}

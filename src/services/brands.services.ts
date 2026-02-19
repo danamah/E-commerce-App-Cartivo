@@ -1,0 +1,22 @@
+const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
+export async function getAllBrands() {
+    try {
+        const response = await fetch(`${API_URL}/brands`, { cache: "force-cache" });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+        throw error;
+    }
+}
+export async function getSpecificBrands(id: string) {
+    try {
+        const response = await fetch(`${API_URL}/brands/${id}`)
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error('Error fetching brands id:', error);
+        throw error;
+    }
+}
