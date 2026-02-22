@@ -7,12 +7,12 @@ declare module "next-auth" {
     token:string
   }
 }
-// declare module "next-auth" {
-//   interface Session {
-//     user: UserInfoI;
-//     token: string;
-//   }
-// }
+declare module "next-auth" {
+  interface Session {
+    user: UserInfoI;
+    token: string;
+  }
+}
 interface UserInfoI {
     name: string,
     email:string,
