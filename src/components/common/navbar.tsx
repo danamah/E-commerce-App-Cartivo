@@ -6,6 +6,8 @@ import {
     DropdownMenuContent,
     DropdownMenuGroup,
     DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -16,13 +18,14 @@ import {
     NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import {
-    ChevronDown,
     Gift,
     Headset,
     Heart,
+    IdCard,
     Mail,
     Phone,
     ShoppingBag,
+    UserCheck,
     UserRoundKey,
     UserRoundPlus,
     Van,
@@ -40,15 +43,29 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
-
 import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
+import CartSync from "../cart/cartSync";
+import WishListSync from "../wishList/wishListSync";
+import { useContext } from "react";
+import { cartContext } from "@/providers/cart-provider";
+import { Spinner } from "../ui/spinner";
+import { wishListContext } from "@/providers/wishList-provider";
 
 export default function Navbar() {
     const t = useTranslations("Navbar");
     const path = usePathname()
+    const { numOfCartItems, isLoading } = useContext(cartContext)
+    const { numOfWishListItems, isLoadingWish } = useContext(wishListContext)
+    const { data: session, status } = useSession()
+    function logOutUser() {
+        signOut({ callbackUrl: ("/login") })
+    }
     return (
         <>
+            <CartSync />
+            <WishListSync />
             <div className="top-nav bg-muted border-b border-border container mx-auto hidden lg:flex justify-between items-center chart-4 py-1.5 px-4">
                 <div className="right flex items-center justify-between space-x-5">
                     <div className="shipping flex items-center space-x-1">
@@ -62,6 +79,7 @@ export default function Navbar() {
                 </div>
                 <div className="left flex items-center justify-between space-x-4">
                     <div className="phone-num flex items-center space-x-1">
+                        <p className="text-muted-foreground font-medium flex items-center gap-1.5 pe-1.5 text-sm"><IdCard className="text-purple-600" />{status}</p>
                         <Phone className="text-primary w-5" />
                         <a
                             className="text-muted-foreground text-sm hover:text-[#6D28D9] transition-colors duration-200"
@@ -162,7 +180,7 @@ export default function Navbar() {
                                     className="flex items-center space-x-1 hover:text-primary transition-colors duration-200"
                                     href={"/contact"}
                                 >
-                                    <Headset />
+                                    <Headset className="h-7 w-7" />
                                     <div className="text ">
                                         <span className="text-muted-foreground text-xs">
                                             {t("help")}
@@ -171,14 +189,50 @@ export default function Navbar() {
                                     </div>
                                 </Link>
                             </div>
-                            <Link href={"/wishlist"}>
-                                <Heart className="hover:text-red-600 transition-colors duration-200" />
+                            <Link href="/wishlist">
+                                <div className="relative inline-block">
+                                    <Heart className="h-7 w-7 hover:text-red-600 transition-colors duration-200" />
+                                    {session ? <span className="absolute top-3.5 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-secondary">
+                                        {isLoadingWish ? <Spinner /> : numOfWishListItems}
+                                    </span> : ""}
+                                </div>
                             </Link>
-                            <Link href={"/cart"}>
-                                <ShoppingBag className="hover:text-primary transition-colors duration-200" />
+
+                            <Link href="/cart">
+                                <div className="relative inline-block">
+                                    <ShoppingBag className="h-7 w-7 hover:text-primary transition-colors duration-200" />
+                                    <span className="absolute top-4 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-xs font-bold text-secondary">
+                                        {isLoading ? <Spinner /> : numOfCartItems}
+                                    </span>
+                                </div>
                             </Link>
                             <ThemeToggle />
                             <LanguageSwitcher />
+                            {session ?
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <Button variant="outline"><UserCheck className="text-purple-600 size-5" /></Button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent>
+                                        <DropdownMenuGroup>
+                                            <DropdownMenuLabel>{`Hala ${session.user?.name}`}</DropdownMenuLabel>
+                                            <DropdownMenuItem asChild><Link href="/profile">Profile</Link></DropdownMenuItem>
+                                            <DropdownMenuItem asChild><Link href="/allorders">Your Orders</Link></DropdownMenuItem>
+                                        </DropdownMenuGroup>
+                                        <DropdownMenuGroup>
+                                            <DropdownMenuSeparator />
+                                            <DropdownMenuItem onClick={logOutUser} variant="destructive">Log Out</DropdownMenuItem>
+                                        </DropdownMenuGroup>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                                : <Button asChild className="bg-linear-to-r from-[#7C3AED] to-[#A855F7]">
+                                    <Link
+                                        className="flex items-center space-x-1 text-accent text-md"
+                                        href={"/login"}
+                                    >
+                                        <UserRoundKey className="w-5 text-accent me-0.5 " /> {t("login")}
+                                    </Link>
+                                </Button>}
                         </div>
                     </div>
                 </nav>
@@ -200,8 +254,8 @@ export default function Navbar() {
                                 <Image src={icon} width={30} height={30} alt="Cartivo logo" />
                                 <SheetTitle className="text-xl">Cartivo</SheetTitle>
                             </SheetHeader>
-                            <div className="mt-2 flex flex-col gap-20">
-                                <div className="links flex flex-col gap-4">
+                            <div className="mt-2 flex flex-col gap-5">
+                                <div className="links flex flex-col gap-1">
                                     <Link className="hover:bg-purple-300 hover:text-accent transition-colors duration-200 border border-white/20 p-2 rounded-md" href="/">{t("home")}</Link>
                                     <Link className="hover:bg-purple-300 hover:text-accent transition-colors duration-200 border border-white/20 p-2 rounded-md" href="/products">{t("products")}</Link>
                                     <Link className="hover:bg-purple-300 hover:text-accent transition-colors duration-200 border border-white/20 p-2 rounded-md" href="/categories">{t("categories")}</Link>
@@ -210,7 +264,7 @@ export default function Navbar() {
                                 <SearchBar />
                                 <div className="helpers flex items-center space-x-4 lg:space-x-6 ">
                                     <Link
-                                        className="flex items-center space-x-1 hover:text-primary transition-colors duration-200"
+                                        className="flex items-center px-0.5 md:px-1 space-x-1 hover:text-primary transition-colors duration-200"
                                         href="/contact"
                                     >
                                         <Headset />
@@ -221,15 +275,42 @@ export default function Navbar() {
                                             <p className="font-bold text-sm">27/7</p>
                                         </div>
                                     </Link>
-                                    <Link href={"/wishlist"}>
-                                        <Heart className="hover:text-red-600 transition-colors duration-200" />
+                                    <Link href="/wishlist" className="px-0.5 md:px-1">
+                                        <div className="relative inline-block">
+                                            <Heart className="h-7 w-7 hover:text-red-600 transition-colors duration-200" />
+                                            {session ? <span className="absolute top-3.5 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-secondary">
+                                                {isLoadingWish ? <Spinner /> : numOfWishListItems}
+                                            </span> : ""}
+                                        </div>
                                     </Link>
-                                    <Link href={"/cart"}>
-                                        <ShoppingBag className="hover:text-primary transition-colors duration-200" />
+                                    <Link href="/cart" className="px-0.5 md:px-1">
+                                        <div className="relative inline-block">
+                                            <ShoppingBag className="h-7 w-7 hover:text-primary transition-colors duration-200" />
+                                            <span className="absolute top-4 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-sm font-bold text-secondary">
+                                                {numOfCartItems}
+                                            </span>
+                                        </div>
                                     </Link>
                                     <ThemeToggle />
                                     <LanguageSwitcher />
                                 </div>
+                                {session ?
+                                    <div className="links flex flex-col">
+                                        <h2 className="px-2 font-bold">{`Hala ${session.user?.name} 👋`}</h2>
+                                        <Link className="hover:bg-purple-300 hover:text-accent transition-colors duration-200 border border-white/20 p-2 rounded-md" href="/profile">Profile</Link>
+                                        <Link className="hover:bg-purple-300 hover:text-accent transition-colors duration-200 border border-white/20 p-2 rounded-md" href="/allorders">All Your Orders</Link>
+                                        <Button onClick={logOutUser} variant={"destructive"} className="w-full mt-2 text-white cursor-pointer hover:bg-red-700">
+                                            LogOut
+                                        </Button>
+                                    </div>
+                                    : <Button asChild className="w-full bg-linear-to-r from-[#7C3AED] to-[#A855F7]">
+                                        <Link
+                                            className="flex items-center space-x-1 text-accent text-md"
+                                            href={"/login"}
+                                        >
+                                            <UserRoundKey className="w-5 text-accent me-0.5 " /> {t("login")}
+                                        </Link>
+                                    </Button>}
                             </div>
                         </SheetContent>
                     </Sheet>

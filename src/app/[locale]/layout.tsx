@@ -6,8 +6,10 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import Navbar from "@/components/common/navbar";
 import Footer from "@/components/common/footer";
-
-
+import { Toaster } from "sonner";
+import AuthProvider from "@/providers/auth-provider";
+import CartContextProvider from "@/providers/cart-provider";
+import WishListContextProvider from "@/providers/wishList-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,10 +39,17 @@ export default async function LocaleLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-              <Navbar />
-                {children}
-              <Footer/>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+            <CartContextProvider>
+              <AuthProvider>
+                <WishListContextProvider>
+                    <Navbar />
+                    {children}
+                    <Toaster position="top-center" richColors />
+                    <Footer />
+                </WishListContextProvider>
+              </AuthProvider>
+            </CartContextProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

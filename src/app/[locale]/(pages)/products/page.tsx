@@ -41,11 +41,11 @@ export default async function Products({ searchParams }: Props) {
       <main>
         <Header />
         <div className='lg:hidden flex items-center justify-end mt-4 mx-2'>
-          <FiltersSheet categories={categories} brands={brands}/>
+          <FiltersSheet key={categories._id} categories={categories} brands={brands}/>
         </div>
         <div className="grid grid-cols-12">
           <div className="filter hidden lg:block lg:col-span-3 lg:my-2 lg:ms-1.5">
-            <FiltersSidebar categories={categories} brands={brands} />
+            <FiltersSidebar key={categories._id} categories={categories} brands={brands} />
           </div>
           <div className="products col-span-12 lg:col-span-9">
             <SortSelect />

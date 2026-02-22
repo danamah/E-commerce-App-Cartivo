@@ -33,9 +33,7 @@ export default function CategoryFilter({
             className={`flex items-center my-2 justify-between px-3 py-2 rounded-lg cursor-pointer border transition
     ${selectedCategory === cat._id
                 ? "bg-purple-100 border-purple-300 text-purple-700"
-                : "hover:bg-primary hover:text-neutral-700"
-              }
-  `}
+                : "hover:bg-primary hover:text-neutral-700"}`}
           >
             <span className="text-text-main">{cat.name}</span>
             <input
@@ -45,7 +43,6 @@ export default function CategoryFilter({
               onChange={() => handleChange(cat._id)}
             />
           </label>
-
         </>
       ))}
     </div>

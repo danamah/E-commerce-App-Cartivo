@@ -1,7 +1,13 @@
 @import "tailwindcss";
 @import "shadcn/tailwind.css";
 @custom-variant dark (&:is(.dark *));
-
+html {
+  -webkit-transition: background-color 0.3s ease, color 0.3s ease;
+  -moz-transition: background-color 0.3s ease, color 0.3s ease;
+  -ms-transition: background-color 0.3s ease, color 0.3s ease;
+  -o-transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 :root {
   /* Brand Colors */
   --primary: oklch(0.55 0.25 300);

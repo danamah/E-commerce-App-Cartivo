@@ -13,6 +13,7 @@ export interface ProductsI {
   description: string
   quantity: number
   price: number
+  priceAfterDiscount?:number
   imageCover: string
   category: CategoryI
   brand: BrandI

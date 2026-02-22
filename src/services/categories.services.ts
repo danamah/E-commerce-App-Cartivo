@@ -20,3 +20,4 @@ export async function getSpecificCategory(id: string) {
         throw error;
     }
 }
+

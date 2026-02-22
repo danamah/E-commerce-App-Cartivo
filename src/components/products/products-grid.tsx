@@ -1,4 +1,4 @@
-import ProductCard from "./product-card";
+import ProductCard from "./card/product-card";
 import { ProductsI } from "@/types/products";
 
 export default function ProductsGrid({

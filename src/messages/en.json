@@ -98,5 +98,41 @@
     "title":"Shop By ",
     "sub":"Category",
     "button":"View All"
+  },
+  "Auth": {
+    "ForgotPassword": {
+      "forgotPassword": "Forgot your password?",
+      "enterEmail": "Enter your email address to receive a reset code",
+      "email": "Email Address",
+      "sendResetCode": "Send Reset Code",
+      "sending": "Sending...",
+      "checkYourEmail": "Check Your Email",
+      "sentCodeTo": "A 6-digit code has been sent to",
+      "enterCode": "Enter the Code",
+      "backToSignIn": "Back to Sign In"
+    },
+    "VerifyResetCode": {
+      "verifyCode": "Verify Code",
+      "sentTo": "The code was sent to",
+      "code": "Verification Code (6 digits)",
+      "verifying": "Verifying...",
+      "verify": "Verify",
+      "didntReceive": "Didn't receive the code?",
+      "resendCode": "Resend Code",
+      "backToSignIn": "Back to Sign In"
+    },
+    "ResetPassword": {
+      "createNewPassword": "Create a New Password",
+      "mustBeDifferent": "Your new password must be different from the previous one",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "resetting": "Resetting...",
+      "resetPassword": "Reset Password",
+      "successTitle": "Password Reset Successfully!",
+      "successMessage": "You can now sign in with your new password.",
+      "backToSignIn": "Back to Sign In"
+    }
   }
+
+
 }

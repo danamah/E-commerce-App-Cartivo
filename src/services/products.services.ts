@@ -39,3 +39,10 @@ export async function getSpecificProduct(id: string) {
         throw error;
     }
 }
+
+export function getRelatedProducts(categoryId: string) {
+  return getAllProducts({
+    category: categoryId,
+    limit: 10,
+  });
+}
