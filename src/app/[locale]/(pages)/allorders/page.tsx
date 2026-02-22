@@ -21,7 +21,6 @@ type Order = {
   }[]
 }
 export default function OrdersPage() {
-  // 👇 بعدين هتحطي هنا getUserOrders()
   const orders: Order[] = []
   return (
     <div className="container mx-auto px-4 py-10">
@@ -31,13 +30,11 @@ export default function OrdersPage() {
           Track and manage your purchases
         </p>
       </div>
-
       {orders.length === 0 ? (
         <EmptyOrders />
       ) : (
         <OrdersList orders={orders} />
       )}
-
     </div>
   )
 }

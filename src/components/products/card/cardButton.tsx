@@ -34,7 +34,6 @@ export default function CardButton({ prodId }: { prodId: string }) {
             setIsLoading(false)
         }
     }
-
     return (
         <Button disabled={isLoading}
             onClick={handleAdd}

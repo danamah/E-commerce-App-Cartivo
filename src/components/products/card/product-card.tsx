@@ -29,10 +29,7 @@ export default function ProductCard({
 
   return (
     <div className="rounded-xl border border-border bg-card p-2 hover:shadow-lg transition">
-
       <div className="relative">
-
-        {/* 🔴 Discount Badge */}
         {hasDiscount && (
           <Badge
             className="absolute left-2 top-2 bg-red-500 hover:bg-red-600 text-white rounded-lg px-2 py-1"
@@ -40,7 +37,6 @@ export default function ProductCard({
             -{discountPercentage}%
           </Badge>
         )}
-
         <Image
           src={product.imageCover}
           alt={product.title}

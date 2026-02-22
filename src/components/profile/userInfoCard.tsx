@@ -31,7 +31,7 @@ export default function UserInfoCard() {
       reset({
         name: session.user.name || "",
         email: session.user.email || "",
-        phone: session.user.phone || "",
+        // phone: session.user.phone || "",
       });
     }
   }, [session, reset]);
