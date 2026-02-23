@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import OrderCard from "./orderCard"
+import OrderCard from "./orderCard";
+import { Order } from "@/types/allOrders";
 
 type Props = {
-  orders: any[]
-}
-
+  orders: Order[];
+};
 export default function OrdersList({ orders }: Props) {
   return (
     <div className="space-y-6">
@@ -13,5 +13,5 @@ export default function OrdersList({ orders }: Props) {
         <OrderCard key={order._id} order={order} />
       ))}
     </div>
-  )
+  );
 }

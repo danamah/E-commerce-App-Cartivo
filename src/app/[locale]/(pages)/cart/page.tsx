@@ -1,22 +1,22 @@
 "use client"
 import { ClearUserCart, getLoggedUserCart } from "@/actions/cart.action"
 import CartItem from "@/components/cart/cartItem"
-import OrderSummary from "@/components/checkout/orderSummery"
-import { Button } from "@/components/ui/button"
-import { CartI, CartProductI } from "@/types/cart"
-import { Eraser, ShoppingBag, ShoppingCart } from "lucide-react"
-import Link from "next/link"
-import { useContext, useEffect, useState } from "react"
 import CartSkeleton from "@/components/cart/CartSkeleton"
+import OrderSummary from "@/components/checkout/orderSummery"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
-import { toast } from "sonner"
+import { Button } from "@/components/ui/button"
 import { Spinner } from "@/components/ui/spinner"
 import { cartContext } from "@/providers/cart-provider"
-
+import { CartI, CartProductI } from "@/types/cart"
+import { Eraser, ShoppingBag } from "lucide-react"
+import Link from "next/link"
+import { useContext, useEffect, useState } from "react"
+import { toast } from "sonner"
 
 export default function CartPage() {
   const [loading, setLoading] = useState(true)
   const [products, setProducts] = useState<CartProductI[] | []>([])
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
   const{handleCart} = useContext(cartContext)
   async function getUserCart() {
     try {
@@ -109,7 +109,7 @@ export default function CartPage() {
             ))
           )}
         </div>
-        <OrderSummary subtotal={subtotal} />
+        <OrderSummary checkoutLoading={checkoutLoading} setCheckoutLoading={setCheckoutLoading} subtotal={subtotal} />
       </div>
 
     </>

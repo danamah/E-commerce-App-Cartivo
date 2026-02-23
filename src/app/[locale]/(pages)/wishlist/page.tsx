@@ -16,6 +16,7 @@ import { getLoggedUserCart } from "@/actions/cart.action"
 import { CartProductI } from "@/types/cart"
 import { cartContext } from "@/providers/cart-provider"
 import { wishListContext } from "@/providers/wishList-provider"
+import { useTranslations } from "next-intl"
 
 export default function WishlistPage() {
   const [loading, setLoading] = useState(true)
@@ -25,6 +26,7 @@ export default function WishlistPage() {
   const [cartIds, setCartIds] = useState<string[]>([])
   const {handleCart} = useContext(cartContext)
   const {handleWishList} = useContext(wishListContext)
+    const t = useTranslations("wishLists");
   async function getUserWishList() {
     try {
       setLoading(true)
@@ -88,31 +90,30 @@ export default function WishlistPage() {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      {/* Header */}
       <div className="flex items-center gap-3 mb-10">
         <div className="bg-primary/10 p-3 rounded-xl">
           <Heart className="text-primary" />
         </div>
         <div>
           <h1 className="text-3xl font-bold">
-            My Wishlist
+            {t("title")}
           </h1>
           <p className="text-muted-foreground">
-            {products.length} saved item(s)
+            {products.length} {t("savedItems")}
           </p>
         </div>
       </div>
       {loading ? <WishListSkeleton /> : products.length === 0 ? (
         <div className="bg-muted rounded-2xl space-y-4 p-14 text-center">
           <p className="text-muted-foreground">
-            Your wishlist is empty.
+            {t("subTitle")}
           </p>
           <Button asChild className="bg-linear-to-r from-[#7C3AED] to-[#A855F7]">
             <Link
               className="flex items-center space-x-1 text-accent text-md"
               href={"/products"}
             >
-              Start Shoping now
+              {t("StartShopping")}
             </Link>
           </Button>
         </div>

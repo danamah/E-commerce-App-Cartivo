@@ -20,7 +20,10 @@
     "brands": "Brands",
     "help": "Help",
     "supportTime": "24/7",
-    "searchPlaceholder": "Search for products, brands and more"
+    "searchPlaceholder": "Search for products, brands and more",
+    "profile": "Profile",
+    "AllYourOrders": "All Your Orders",
+    "logOut": "Logout"
   },
   "NotFound": {
     "oops": "Oops",
@@ -74,30 +77,30 @@
     "subscribe": "Subscribe",
     "note": "Unsubscribe anytime. No spam, ever."
   },
-  "MobileApp":{
-    "badge":"Mobile App",
-    "title":"Shop Faster on Our App",
-    "subtitle":"Get app-exclusive deals & 15% off your first order.",
-    "down":"Download Now",
-    "store1":"Apple Store",
-    "store2":"Google Play"
+  "MobileApp": {
+    "badge": "Mobile App",
+    "title": "Shop Faster on Our App",
+    "subtitle": "Get app-exclusive deals & 15% off your first order.",
+    "down": "Download Now",
+    "store1": "Apple Store",
+    "store2": "Google Play"
   },
-  "AllProducts":{
-    "header":"All Products",
-    "para":"Explore our complete product collection"
+  "AllProducts": {
+    "header": "All Products",
+    "para": "Explore our complete product collection"
   },
-  "AllCategories":{
-    "header":"All Categories",
-    "para":"Browse our wide range of product categories"
+  "AllCategories": {
+    "header": "All Categories",
+    "para": "Browse our wide range of product categories"
   },
-  "AllBrands":{
-    "header":"Top Brands",
-    "para":"Shop from your favorite brands"
+  "AllBrands": {
+    "header": "Top Brands",
+    "para": "Shop from your favorite brands"
   },
-  "HomeCate":{
-    "title":"Shop By ",
-    "sub":"Category",
-    "button":"View All"
+  "HomeCate": {
+    "title": "Shop By ",
+    "sub": "Category",
+    "button": "View All"
   },
   "Auth": {
     "ForgotPassword": {
@@ -131,8 +134,166 @@
       "successTitle": "Password Reset Successfully!",
       "successMessage": "You can now sign in with your new password.",
       "backToSignIn": "Back to Sign In"
+    },
+    "Login": {
+      "welcomeTitle": "Welcome Back!",
+      "welcomeSubtitle": "Sign in to continue your premium shopping experience with Cartivo",
+      "title": "Welcome Back!",
+      "subtitle": "Log in to continue your premium shopping experience",
+      "email": "Email Address",
+      "password": "Password",
+      "login": "Log In",
+      "forgotPassword": "Forgot your password?",
+      "noAccount": "Don't have an account?",
+      "registerNow": "Create a new account"
+    },
+    "Register": {
+      "welcomeTitle": "Join Us Now!",
+      "welcomeSubtitle": "Create your account and start your unlimited shopping journey with Cartivo",
+      "title": "Create Your Account Now",
+      "subtitle": "Start your journey into the world of unlimited shopping with Cartivo",
+      "name": "Full Name",
+      "email": "Email Address",
+      "password": "Password",
+      "rePassword": "Confirm Password",
+      "phone": "Phone Number",
+      "register": "Create Account",
+      "haveAccount": "Already have an account?",
+      "loginNow": "Log In"
     }
+  },
+  "Footer": {
+    "description": "Cartivo is your ultimate online shopping destination. Discover fashion, electronics, books and more — all in one place with premium quality and fast delivery.",
+    "contact": {
+      "phone": "+20 100 123 4567",
+      "email": "support@cartivo.com",
+      "address": "123 Commerce Street, Cairo, Egypt"
+    },
+    "shop": {
+      "title": "Shop",
+      "allProducts": "All Products",
+      "categories": "Categories",
+      "brands": "Brands",
+      "mensFashion": "Men's Fashion",
+      "womensFashion": "Women's Fashion"
+    },
+    "account": {
+      "title": "Account",
+      "signIn": "Sign In",
+      "createAccount": "Create Account",
+      "wishlist": "Wishlist",
+      "cart": "Shopping Cart"
+    },
+    "support": {
+      "title": "Support",
+      "contactUs": "Contact Us",
+      "shippingInfo": "Shipping Info",
+      "returnsRefunds": "Returns & Refunds",
+      "trackOrder": "Track Order"
+    },
+    "copyright": "© {year} Cartivo. All rights reserved.",
+    "paymentMethods": "Payment Methods"
+  },
+  "allOrders": {
+    "title": "My Orders",
+    "subTitle": "Track and manage your purchases"
+  },
+  "cart": {
+    "total": "total",
+    "instock": "in stock",
+    "orderSummery": "Order Summery",
+    "Subtotal": "Subtotal",
+    "Shipping": "Shipping",
+    "CalculatedAtCheckout": "Calculated at checkout",
+    "Processing": "Processing...",
+    "ProceedToCheckout": "Proceed to Checkout",
+    "LoginToCheckout": "Login to Checkout"
+  },
+  "checkOut": {
+    "CompleteYourOrder": "Complete Your Order",
+    "BackToCart": " ← Back to Cart",
+    "PaymentMethod": "Payment Method",
+    "ChooseHowToPay": "Choose how you'd like to pay",
+    "CashOnDelivery": "Cash on Delivery",
+    "Selected": "Selected",
+    "Cash": "Pay when your order arrives at your doorstep",
+    "PayOnline": "Pay Online",
+    "SecurePayment": "Secure payment with Credit/Debit Card (Test Mode)",
+    "Secure": "Secure & Encrypted",
+    "Protection": "256-bit SSL protection"
+  },
+  "summeryPayment": {
+    "OrderSummery": "Order Summary",
+    "items": "items",
+    "Subtotal": "Subtotal",
+    "Shipping": "Shipping",
+    "Free": "Free",
+    "Total": "Total"
+  },
+  "shippingAddress": {
+    "ShippingAddress": "Shipping Address",
+    "Address": "Where should we deliver your order?",
+    "AddressSec": "Use a different address",
+    "AddressName": "Address Name (optional)",
+    "City": "City *",
+    "StreetAddress": "Street Address *",
+    "PhoneNumber": "Phone Number *",
+    "Cancel": "Cancel",
+    "SaveAdresses": "Save & Use This Address",
+    "differentAddress": "Use a different address"
+  },
+  "orderSuccess": {
+    "title": "Order Placed Successfully! 🎉",
+    "subTitle": "Thank you for your order. We will contact you soon with delivery details.",
+    "contBtn": "Continue Shopping"
+  },
+  "contact": {
+    "sendMsg": "Send us a Message",
+    "fillForm": "Fill out the form and we'll get back to you",
+    "sendBtn": "Send Message",
+    "phone": "Phone",
+    "phoneText": "Mon-Fri from 8am to 6pm",
+    "email": "Email",
+    "emailText": "We'll respond within 24 hours",
+    "office": "Office",
+    "officeText": "Cairo, Egypt"
+  },
+  "profile": {
+    "title": "User Profile",
+    "MainsubTitle": "Manage All Your Account Data",
+    "MyAddresses": "All Adresses",
+    "subTitle": "Manage your saved delivery addresses",
+    "addAdress": "Add Address",
+    "AddressName": "Address Name",
+    "FullAddress": "Full Address",
+    "PhoneNumber": "Phone Number",
+    "Cancel": "Cancel",
+    "NoAddressesYet": "No Addresses Yet",
+    "AddAddressToCheck": "Add your first delivery address to make checkout faster.",
+    "FirstAddress": "Add Your First Address",
+    "ChangePassword": "Change Password",
+    "KeepAcc": "Keep your account secure",
+    "CurrentPassword": "Current Password",
+    "NewPassword": "New Password",
+    "Confirm": "Confirm New Password",
+    "Changing": "Changing...",
+    "MyAccount": "My Account",
+    "AllMyAddresses": "My Addresses",
+    "Settings": "Settings",
+    "ProfileInformation": "Profile Information",
+    "Update": "Update your personal details",
+    "FullName": "Full Name",
+    "Email": "Email",
+    "Phone": "Phone",
+    "Saving": "Saving..."
+  },
+  "wishLists":{
+    "title":"My Wishlist",
+    "subTitle":"Your wishlist is empty.",
+    "savedItems":"saved item(s)",
+    "StartShopping":"Start Shoping now",
+    "AddtoCart":"Add to Cart",
+    "Remove":"Remove",
+    "InCart":"In Cart"
   }
-
-
 }

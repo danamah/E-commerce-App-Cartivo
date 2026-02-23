@@ -11,11 +11,12 @@ import { Input } from "@/components/ui/input";
 import { UserRoundPen, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { updateLoggedUserData } from "@/actions/profile.action";
+import { useTranslations } from "next-intl";
 
 export default function UserInfoCard() {
   const { data: session, update } = useSession();
   const [loading, setLoading] = useState(false);
-
+  const t = useTranslations("profile");
   const {register,handleSubmit,formState: { errors },reset,} = useForm<UpdateUserDataType>({
     resolver: zodResolver(updateUserDataSchema),
     defaultValues: {
@@ -25,7 +26,6 @@ export default function UserInfoCard() {
     },
   });
 
-  // Reset form when session loads
   useEffect(() => {
     if (session?.user) {
       reset({
@@ -43,7 +43,6 @@ export default function UserInfoCard() {
       console.log(res)
       if (res.message === "success" && res.user) {
         toast.success("User Data Updated Successfuly ☑️");
-        // Update session to reflect new data
         update({
           user: {
             ...session?.user,
@@ -68,23 +67,23 @@ export default function UserInfoCard() {
       <div className="flex items-center gap-3">
         <UserRoundPen className="size-14 text-primary bg-fuchsia-200/60 p-3 rounded-lg border border-white/20" />
         <div className="text">
-          <h3 className="text-xl font-bold">Profile Information</h3>
-          <p className="text-muted-foreground">Update your personal details</p>
+          <h3 className="text-xl font-bold">{t("ProfileInformation")}</h3>
+          <p className="text-muted-foreground">{t("Update")}</p>
         </div>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="grid md:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <label className="text-sm">Full Name</label>
+          <label className="text-sm">{t("FullName")}</label>
           <Input placeholder="Enter your name" {...register("name")} />
           {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
         </div>
         <div className="space-y-2">
-          <label className="text-sm">Email</label>
+          <label className="text-sm">{t("")}</label>
           <Input placeholder="Enter your email" {...register("email")} />
           {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
         </div>
         <div className="space-y-2 md:col-span-2">
-          <label className="text-sm">Phone</label>
+          <label className="text-sm">{t("")}</label>
           <Input placeholder="01xxxxxxxxx" {...register("phone")} />
           {errors.phone && <p className="text-red-500 text-sm">{errors.phone.message}</p>}
         </div>
@@ -96,7 +95,7 @@ export default function UserInfoCard() {
           {loading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Saving...
+              {t("Saving")}
             </>
           ) : (
             "Save Changes"

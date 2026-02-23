@@ -6,6 +6,7 @@ import Image from "next/image"
 import { ProductsI } from "@/types/products"
 import { Spinner } from "../ui/spinner"
 import { Badge } from "../ui/badge"
+import { useTranslations } from "next-intl"
 type Props = {
     item: ProductsI
     onRemove?: (id: string) => void
@@ -15,6 +16,7 @@ type Props = {
     isInCart: boolean
 }
 export default function WishlistItem({ item, onRemove, onAddToCart, isDeleting, isAdding, isInCart }: Props) {
+      const t = useTranslations("wishLists");
     return (
         <Card className="rounded-2xl border border-white/20 hover:shadow-md transition bg-background">
             <CardContent className="p-6 flex flex-col md:flex-row gap-6">
@@ -40,7 +42,7 @@ export default function WishlistItem({ item, onRemove, onAddToCart, isDeleting, 
                         ) : (
                             <>
                                 <ShoppingBag className="mr-2 h-4 w-4" />
-                                Add to Cart
+                                {t("AddtoCart")}
                             </>
                         )}
                     </Button>
@@ -54,13 +56,13 @@ export default function WishlistItem({ item, onRemove, onAddToCart, isDeleting, 
                         ) : (
                             <>
                                 <Trash2 className="mr-2 h-4 w-4" />
-                                Remove
+                                {t("Remove")}
                             </>
                         )}
                     </Button>
                     {isInCart && (
                         <Badge className=" w-full bg-green-500">
-                            In Cart <Check />
+                            {t("InCart")} <Check />
                         </Badge>
                     )}
 

@@ -1,8 +1,10 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, MapPin, MessagesSquare, Phone } from "lucide-react"
+import { useTranslations } from "next-intl"
 import React from "react"
 
 type ContactCardProps = {
@@ -28,28 +30,28 @@ function ContactCard({ icon, title, text, highlight }: ContactCardProps) {
     </Card>
   )
 }
-
 export default function ContactPage() {
+  const t = useTranslations("contact");
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="grid lg:grid-cols-2 gap-14">
         <div className="space-y-6">
           <ContactCard
             icon={<Phone />}
-            title="Phone"
-            text="Mon-Fri from 8am to 6pm"
+            title={t("phone")}
+            text={t("phoneText")}
             highlight="+20 100 123 4567"
           />
           <ContactCard
             icon={<Mail />}
-            title="Email"
-            text="We'll respond within 24 hours"
+            title={t("email")}
+            text={t("emailText")}
             highlight="support@yourstore.com"
           />
           <ContactCard
             icon={<MapPin />}
-            title="Office"
-            text="Cairo, Egypt"
+            title={t("office")}
+            text={t("officeText")}
             highlight="Business District"
           />
         </div>
@@ -61,10 +63,10 @@ export default function ContactPage() {
               </div>
               <div>
                 <h2 className="text-2xl font-bold">
-                  Send us a Message
+                 {t("sendMsg")}
                 </h2>
                 <p className="text-muted-foreground text-sm">
-                  Fill out the form and we&apos;ll get back to you
+                 {t("fillForm")}
                 </p>
               </div>
             </div>
@@ -82,7 +84,7 @@ export default function ContactPage() {
                 type="submit"
                 className="w-full rounded-xl"
               >
-                Send Message
+                {t("sendBtn")}
               </Button>
             </form>
           </CardContent>

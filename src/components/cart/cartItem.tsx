@@ -10,11 +10,13 @@ import { Button } from '../ui/button'
 import { Spinner } from '../ui/spinner'
 import Link from 'next/link'
 import { Badge } from '../ui/badge'
+import { useTranslations } from 'next-intl'
 
 export default function CartItem({ product, setProducts }: { product: CartProductI, setProducts: (products: CartProductI[]) => void }) {
     const [isLoading, setIsLoading] = useState(false)
     const [isLoadingPlus, setIsLoadingPlus] = useState(false)
     const [isLoadingMinus, setIsLoadingMinus] = useState(false)
+    const t = useTranslations("cart");
     const { handleCart } = useContext(cartContext)
 
     async function deleteProduct(id: string) {
@@ -93,11 +95,11 @@ export default function CartItem({ product, setProducts }: { product: CartProduc
                 </Button>
                 <Badge asChild >
                     <Link className="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300" href={`/products/${product.product._id}`}>
-                        in stock <Check data-icon="inline-end"/>
+                        {t("instock")} <Check data-icon="inline-end"/>
                     </Link>
                 </Badge>
                 <div className="text-right">
-                    <p className="text-sm text-muted-foreground">Total</p>
+                    <p className="text-sm text-muted-foreground">{t("total")}</p>
                     <p className="font-bold text-lg">
                         {product.price * product.count} EGP
                     </p>

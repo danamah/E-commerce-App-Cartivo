@@ -9,11 +9,13 @@ import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, LockKeyhole, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { updateLoggedUserPassword } from "@/actions/profile.action";
+import { useTranslations } from "next-intl";
 export default function ChangePasswordCard() {
   const [loading, setLoading] = useState(false);
   const [showCurrent, setShowCurrent] = useState(false);
   const [showNew, setShowNew] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const t = useTranslations("profile");
 
   const {
     register,
@@ -23,7 +25,6 @@ export default function ChangePasswordCard() {
   } = useForm<ChangePasswordType>({
     resolver: zodResolver(changePasswordSchema),
   });
-
   const onSubmit = async (data: ChangePasswordType) => {
     setLoading(true);
     try {
@@ -52,13 +53,13 @@ export default function ChangePasswordCard() {
       <div className="flex items-center gap-3">
         <LockKeyhole className="size-14 text-orange-300 bg-amber-200/60 p-3 rounded-lg border border-white/20" />
         <div className="text">
-          <h3 className="text-xl font-bold text-yellow-600">Change Password</h3>
-          <p className="text-muted-foreground">Keep your account secure</p>
+          <h3 className="text-xl font-bold text-yellow-600">{t("ChangePassword")}</h3>
+          <p className="text-muted-foreground">{t("KeepAcc")}</p>
         </div>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
         <div className="relative">
-          <label className="text-sm">Current Password</label>
+          <label className="text-sm">{t("CurrentPassword")}</label>
           <Input
             type={showCurrent ? "text" : "password"}
             className="pr-10"
@@ -77,7 +78,7 @@ export default function ChangePasswordCard() {
           )}
         </div>
         <div className="relative">
-          <label className="text-sm">New Password</label>
+          <label className="text-sm">{t("NewPassword")}</label>
           <Input
             type={showNew ? "text" : "password"}
             className="pr-10"
@@ -94,7 +95,7 @@ export default function ChangePasswordCard() {
           {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
         </div>
         <div className="relative">
-          <label className="text-sm">Confirm New Password</label>
+          <label className="text-sm">{t("Confirm")}</label>
           <Input
             type={showConfirm ? "text" : "password"}
             className="pr-10"
@@ -120,7 +121,7 @@ export default function ChangePasswordCard() {
           {loading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Changing...
+              {t("Changing")}
             </>
           ) : (
             "Change Password"

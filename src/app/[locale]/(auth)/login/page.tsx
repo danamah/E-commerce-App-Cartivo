@@ -1,7 +1,5 @@
 import LayOut from '@/components/auth/login/layOut'
 import LoginForm from '@/components/auth/login/loginForm'
-import React from 'react'
-
 export default function page() {
   return (
     <main>

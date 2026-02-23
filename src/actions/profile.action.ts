@@ -92,7 +92,6 @@ export async function getLoggedUserAdresses() {
     console.error("No token found");
     return [];
   }
-
   try {
     const response = await fetch(`${API_URL}/addresses`, {
       method: "GET",

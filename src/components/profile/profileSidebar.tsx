@@ -3,13 +3,15 @@
 import { TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MapPin, Settings } from "lucide-react"
+import { useTranslations } from "next-intl";
 
 export default function ProfileSidebar() {
+    const t = useTranslations("profile");
   return (
     <Card className="rounded-2xl shadow-sm h-fit">
       <CardHeader className="pb-2">
         <CardTitle className="text-xl font-bold">
-          My Account
+          {t("MyAccount")}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -23,10 +25,9 @@ export default function ProfileSidebar() {
           >
             <div className="flex items-center gap-3">
               <MapPin className="w-4 h-4" />
-              My Addresses
+              {("AllMyAddresses")}
             </div>
           </TabsTrigger>
-
           <TabsTrigger
             value="settings"
             className="flex items-center justify-between w-full gap-3 
@@ -36,7 +37,7 @@ export default function ProfileSidebar() {
           >
             <div className="flex items-center gap-3">
               <Settings className="w-4 h-4" />
-              Settings
+              {t("Settings")}
             </div>
           </TabsTrigger>
         </TabsList>

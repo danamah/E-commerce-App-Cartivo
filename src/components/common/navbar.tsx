@@ -18,11 +18,21 @@ import {
     NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import {
+    Sheet,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet";
+import { cartContext } from "@/providers/cart-provider";
+import { wishListContext } from "@/providers/wishList-provider";
+import {
     Gift,
     Headset,
     Heart,
     IdCard,
     Mail,
+    Menu,
     Phone,
     ShoppingBag,
     UserCheck,
@@ -30,28 +40,18 @@ import {
     UserRoundPlus,
     Van,
 } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useContext } from "react";
+import CartSync from "../cart/cartSync";
 import LanguageSwitcher from "../navbarComponents/languageSwitcher";
 import SearchBar from "../navbarComponents/searchBar";
 import ThemeToggle from "../navbarComponents/themeToggle";
-import {
-    Sheet,
-    SheetContent,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-import { usePathname } from "next/navigation";
-import { signOut, useSession } from "next-auth/react";
-import CartSync from "../cart/cartSync";
-import WishListSync from "../wishList/wishListSync";
-import { useContext } from "react";
-import { cartContext } from "@/providers/cart-provider";
 import { Spinner } from "../ui/spinner";
-import { wishListContext } from "@/providers/wishList-provider";
+import WishListSync from "../wishList/wishListSync";
 
 export default function Navbar() {
     const t = useTranslations("Navbar");
@@ -216,8 +216,8 @@ export default function Navbar() {
                                     <DropdownMenuContent>
                                         <DropdownMenuGroup>
                                             <DropdownMenuLabel>{`Hala ${session.user?.name}`}</DropdownMenuLabel>
-                                            <DropdownMenuItem asChild><Link href="/profile">Profile</Link></DropdownMenuItem>
-                                            <DropdownMenuItem asChild><Link href="/allorders">Your Orders</Link></DropdownMenuItem>
+                                            <DropdownMenuItem asChild><Link href="/profile">{t("profile")}</Link></DropdownMenuItem>
+                                            <DropdownMenuItem asChild><Link href="/allorders">{t("AllYourOrders")}</Link></DropdownMenuItem>
                                         </DropdownMenuGroup>
                                         <DropdownMenuGroup>
                                             <DropdownMenuSeparator />
@@ -295,12 +295,12 @@ export default function Navbar() {
                                     <LanguageSwitcher />
                                 </div>
                                 {session ?
-                                    <div className="links flex flex-col">
+                                    <div className="links flex flex-col space-y-1.5">
                                         <h2 className="px-2 font-bold">{`Hala ${session.user?.name} 👋`}</h2>
-                                        <Link className="hover:bg-purple-300 hover:text-accent transition-colors duration-200 border border-white/20 p-2 rounded-md" href="/profile">Profile</Link>
-                                        <Link className="hover:bg-purple-300 hover:text-accent transition-colors duration-200 border border-white/20 p-2 rounded-md" href="/allorders">All Your Orders</Link>
+                                        <Link className="hover:bg-purple-300 hover:text-accent transition-colors duration-200 border border-white/20 p-2 rounded-md" href="/profile">{t("profile")}</Link>
+                                        <Link className="hover:bg-purple-300 hover:text-accent transition-colors duration-200 border border-white/20 p-2 rounded-md" href="/allorders">{t("AllYourOrders")}</Link>
                                         <Button onClick={logOutUser} variant={"destructive"} className="w-full mt-2 text-white cursor-pointer hover:bg-red-700">
-                                            LogOut
+                                            {t("logOut")}
                                         </Button>
                                     </div>
                                     : <Button asChild className="w-full bg-linear-to-r from-[#7C3AED] to-[#A855F7]">

@@ -20,6 +20,8 @@ import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { AddressI } from "@/types/address";
+import { useTranslations } from "next-intl";
 
 const addAddressSchema = z.object({
   name: z.string().min(1, "the Address name required"),
@@ -30,21 +32,15 @@ const addAddressSchema = z.object({
 
 type AddAddressForm = z.infer<typeof addAddressSchema>;
 
-type Address = {
-  _id?: string;
-  name: string;
-  details: string;
-  phone: string;
-  city: string;
-};
 
 export default function AddressesSection() {
-  const [addresses, setAddresses] = useState<Address[]>([]);
+  const [addresses, setAddresses] = useState<AddressI[]>([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [addLoading, setAddLoading] = useState(false);
-  const [editAddress, setEditAddress] = useState<Address | null>(null);
+  const [editAddress, setEditAddress] = useState<AddressI | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const t = useTranslations("profile");
 
   const {
     register,
@@ -138,17 +134,16 @@ export default function AddressesSection() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold">My Addresses</h2>
+          <h2 className="text-2xl font-bold">{t("MyAddresses")}</h2>
           <p className="text-muted-foreground">
-            Manage your saved delivery addresses
+           {t("subTitle")}
           </p>
         </div>
-
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>
             <Button className="gap-2">
               <Plus className="w-4 h-4" />
-              Add Address
+              {t("addAdress")}
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-106.25">
@@ -159,7 +154,7 @@ export default function AddressesSection() {
             </DialogHeader>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 py-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Address Name</Label>
+                <Label htmlFor="name">{t("AddressName")}</Label>
                 <Input
                   id="name"
                   placeholder="e.g. Home, Office"
@@ -168,7 +163,7 @@ export default function AddressesSection() {
                 {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="details">Full Address</Label>
+                <Label htmlFor="details">{t("FullAddress")}</Label>
                 <Input
                   id="details"
                   placeholder="Street, building, apartment..."
@@ -176,10 +171,9 @@ export default function AddressesSection() {
                 />
                 {errors.details && <p className="text-red-500 text-sm">{errors.details.message}</p>}
               </div>
-
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
+                  <Label htmlFor="phone">{t("PhoneNumber")}</Label>
                   <Input
                     id="phone"
                     placeholder="01xxxxxxxxxx"
@@ -187,21 +181,18 @@ export default function AddressesSection() {
                   />
                   {errors.phone && <p className="text-red-500 text-sm">{errors.phone.message}</p>}
                 </div>
-
                 <div className="space-y-2">
                   <Label htmlFor="city">City</Label>
                   <Input id="city" placeholder="Cairo" {...register("city")} />
                   {errors.city && <p className="text-red-500 text-sm">{errors.city.message}</p>}
                 </div>
               </div>
-
               <DialogFooter className="sm:justify-between">
                 <DialogClose asChild>
                   <Button type="button" variant="outline" onClick={() => setEditAddress(null)}>
-                    Cancel
+                    {t("Cancel")}
                   </Button>
                 </DialogClose>
-
                 <Button
                   type="submit"
                   disabled={addLoading}
@@ -228,15 +219,15 @@ export default function AddressesSection() {
       ) : addresses.length === 0 ? (
         <Card className="p-10 text-center rounded-2xl">
           <MapPin className="mx-auto w-12 h-12 text-muted-foreground mb-4" />
-          <h3 className="text-lg font-semibold">No Addresses Yet</h3>
+          <h3 className="text-lg font-semibold">{t("NoAddressesYet")}</h3>
           <p className="text-muted-foreground mb-6">
-            Add your first delivery address to make checkout faster.
+            {t("AddAddressToCheck")}
           </p>
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
               <Button className="gap-2">
                 <Plus className="w-4 h-4" />
-                Add Your First Address
+                {t("FirstAddress")}
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-106.25">
@@ -245,10 +236,9 @@ export default function AddressesSection() {
                   {editAddress ? "Edit Address" : "Add New Address"}
                 </DialogTitle>
               </DialogHeader>
-
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 py-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Address Name</Label>
+                  <Label htmlFor="name">{t("AddressName")}</Label>
                   <Input
                     id="name"
                     placeholder="e.g. Home, Office"
@@ -257,7 +247,7 @@ export default function AddressesSection() {
                   {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="details">Full Address</Label>
+                  <Label htmlFor="details">{t("FullAddress")}</Label>
                   <Input
                     id="details"
                     placeholder="Street, building, apartment..."
@@ -267,7 +257,7 @@ export default function AddressesSection() {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number</Label>
+                    <Label htmlFor="phone">{t("PhoneNumber")}</Label>
                     <Input
                       id="phone"
                       placeholder="01xxxxxxxxxx"
@@ -284,10 +274,9 @@ export default function AddressesSection() {
                 <DialogFooter className="sm:justify-between">
                   <DialogClose asChild>
                     <Button type="button" variant="outline" onClick={() => setEditAddress(null)}>
-                      Cancel
+                      {t("Cancel")}
                     </Button>
                   </DialogClose>
-
                   <Button
                     type="submit"
                     disabled={addLoading}
@@ -332,7 +321,6 @@ export default function AddressesSection() {
                   >
                     <SquarePen className="w-4 h-4" />
                   </Button>
-
                   <Button
                     variant="destructive"
                     size="icon"

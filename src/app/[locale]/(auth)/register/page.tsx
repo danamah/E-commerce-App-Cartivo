@@ -5,7 +5,7 @@ export default function Register() {
   return (
     <>
     <main>
-        <div className="grid grid-cols-12 my-4 mx-2 px-3">
+        <div className="grid grid-cols-12 my-4 mx-2 px-3 gap-3">
             <div className="lay-out-side col-span-12 lg:col-span-6">
                 <LayOut/>
             </div>

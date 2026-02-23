@@ -1,10 +1,10 @@
 "use client"
-import { UserPen } from 'lucide-react'
+import { Boxes } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '../ui/breadcrumb'
 
 export default function Header() {
-    const t = useTranslations("profile")
+    const t = useTranslations("allOrders")
     return (
         <>
             <main className='bg-linear-to-br from-violet-600 via-fuchsia-600 to-purple-700 py-5 px-4'>
@@ -15,17 +15,17 @@ export default function Header() {
                         </BreadcrumbItem>
                         <BreadcrumbSeparator className='text-neutral-50' />
                         <BreadcrumbItem>
-                            <BreadcrumbLink className='text-lg text-neutral-50' href="/categories">Prfoile</BreadcrumbLink>
+                            <BreadcrumbLink className='text-lg text-neutral-50' href="/allorders">All Your Orders</BreadcrumbLink>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
                 <div className="heading flex space-x-4.5 items-center my-3">
                     <div className="icon shadow-lg border border-white/20 bg-[#c59fd1] rounded-lg p-2.5">
-                        <UserPen className='size-8 lg:size-12 text-primary' />
+                        <Boxes className='size-8 lg:size-12 text-primary' />
                     </div>
                     <div className="text">
                         <h2 className='text-3xl lg:text-5xl font-bold text-neutral-100'>{t("title")}</h2>
-                        <p className='text-md lg:text-lg font-medium text-accent py-1 lg:py-2'>{t("MainsubTitle")}</p>
+                        <p className='text-md lg:text-lg font-medium text-accent py-1 lg:py-2'>{t("subTitle")}</p>
                     </div>
                 </div>
             </main>
