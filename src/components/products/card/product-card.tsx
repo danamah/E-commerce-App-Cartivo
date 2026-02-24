@@ -3,7 +3,6 @@
 import { ProductsI } from "@/types/products"
 import Image from "next/image"
 import { Eye, Repeat, Star } from "lucide-react"
-import Link from "next/link"
 import CardButton from "./cardButton"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
