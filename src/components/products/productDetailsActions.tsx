@@ -10,14 +10,18 @@ import { addToWishList } from "@/actions/wishList.action"
 import { toast } from "sonner"
 import { ProductsI } from "@/types/products"
 import { useTranslations } from "next-intl"
+import { Spinner } from "../ui/spinner"
 
 export default function ProductDetailsActions({ product }: { product: ProductsI }) {
     const [count, setCount] = useState(1)
     const { handleCart } = useContext(cartContext)
     const { handleWishList } = useContext(wishListContext)
+    const [isLoading, setIsLoading] = useState(false)
+    const [isWishLoading, setIsWishLoading] = useState(false)
      const t = useTranslations("productDetails");
     async function handleAddToCart() {
         try {
+            setIsLoading(true)
             const res = await addToCart(product._id)
             if (res.status === "success") {
                 await updateCartProductCount(product._id, count)
@@ -26,9 +30,12 @@ export default function ProductDetailsActions({ product }: { product: ProductsI 
             }
         } catch {
             toast.error("Error")
+        }finally{
+            setIsLoading(false)
         }
     }
     async function handleAddToWishList() {
+        setIsWishLoading(true)
         try {
             const res = await addToWishList(product._id)
             if (res.status === "success") {
@@ -37,6 +44,8 @@ export default function ProductDetailsActions({ product }: { product: ProductsI 
             }
         } catch {
             toast.error("Error")
+        }finally{
+            setIsWishLoading(false)
         }
     }
     return (
@@ -55,10 +64,12 @@ export default function ProductDetailsActions({ product }: { product: ProductsI 
             </div>
             <div className="grid grid-cols-12 gap-2">
                 <Button className="col-span-12 md:col-span-6" onClick={handleAddToCart}>
+                    {isLoading ? <Spinner/> : <>
                     <ShoppingCart size={18} /> {t("addBtn")}
+                    </>}
                 </Button>
                 <Button className="col-span-12 md:col-span-6" onClick={handleAddToWishList}>
-                    <Heart size={18} /> {t("wishBtn")}
+                    {isWishLoading ? <Spinner/> : <><Heart size={18} /> {t("wishBtn")}</>}
                 </Button>
             </div>
         </div>

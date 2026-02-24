@@ -8,12 +8,15 @@ import CardButton from "./cardButton"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import WhishListBtn from "./whishListBtn"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { Spinner } from "@/components/ui/spinner"
 
 export default function ProductCard({ product, }: { product: ProductsI }) {
   const hasDiscount =
     product.priceAfterDiscount &&
     product.priceAfterDiscount < product.price
-    const discountPercentage = hasDiscount
+  const discountPercentage = hasDiscount
     ? Math.round(
       ((product.price - product.priceAfterDiscount!) /
         product.price) *
@@ -21,6 +24,13 @@ export default function ProductCard({ product, }: { product: ProductsI }) {
     )
     : 0
 
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter();
+
+  function goToProduct() {
+    setIsLoading(true);
+    router.push(`/products/${product._id}`);
+  }
   return (
     <div className="rounded-xl border border-border bg-card p-2 hover:shadow-lg transition">
       <div className="relative">
@@ -46,14 +56,21 @@ export default function ProductCard({ product, }: { product: ProductsI }) {
           >
             <Repeat size={18} />
           </Button>
-          <Link href={`/products/${product._id}`}>
+          {/* <Link href={`/products/${product._id}`}>
             <Button
               size="icon"
               className="bg-primary/70 hover:bg-primary rounded-full"
             >
               <Eye size={18} />
             </Button>
-          </Link>
+          </Link> */}
+          <Button
+            size="icon"
+            onClick={goToProduct}
+            className="bg-primary/70 hover:bg-primary rounded-full"
+          >
+            {isLoading ? <Spinner /> : <Eye size={18} />}
+          </Button>
         </div>
       </div>
       <footer className="flex flex-col justify-end mt-auto">
