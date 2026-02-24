@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/carousel";
 import ProductCard from "../card/product-card";
 import { ProductsI } from "@/types/products";
-import { div } from "framer-motion/client";
 
 export default function ProductsSlider({ products }: { products: ProductsI[] }) {
     return (

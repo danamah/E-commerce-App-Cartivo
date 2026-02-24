@@ -102,7 +102,6 @@ export default async function ProductsDetails({params,}: {params: Promise<{ prod
                 {product?.description}
               </div>
               <ProductDetailsActions product={product} />
-
               {/* //~ Quantity Counter  */}
               {/* <div className="space-y-2">
                 <p className="font-medium">Quantity</p>

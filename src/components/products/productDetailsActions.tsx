@@ -9,11 +9,13 @@ import { addToCart, updateCartProductCount } from "@/actions/cart.action"
 import { addToWishList } from "@/actions/wishList.action"
 import { toast } from "sonner"
 import { ProductsI } from "@/types/products"
+import { useTranslations } from "next-intl"
 
 export default function ProductDetailsActions({ product }: { product: ProductsI }) {
     const [count, setCount] = useState(1)
     const { handleCart } = useContext(cartContext)
     const { handleWishList } = useContext(wishListContext)
+     const t = useTranslations("productDetails");
     async function handleAddToCart() {
         try {
             const res = await addToCart(product._id)
@@ -26,7 +28,6 @@ export default function ProductDetailsActions({ product }: { product: ProductsI 
             toast.error("Error")
         }
     }
-
     async function handleAddToWishList() {
         try {
             const res = await addToWishList(product._id)
@@ -50,14 +51,14 @@ export default function ProductDetailsActions({ product }: { product: ProductsI 
                 </Button>
             </div>
             <div className="text-xl font-bold text-muted-foreground">
-                Total: {product.price * count} EGP
+                {t("total")}: {product.price * count} EGP
             </div>
             <div className="grid grid-cols-12 gap-2">
                 <Button className="col-span-12 md:col-span-6" onClick={handleAddToCart}>
-                    <ShoppingCart size={18} /> Add To Cart
+                    <ShoppingCart size={18} /> {t("addBtn")}
                 </Button>
                 <Button className="col-span-12 md:col-span-6" onClick={handleAddToWishList}>
-                    <Heart size={18} /> Wishlist
+                    <Heart size={18} /> {t("wishBtn")}
                 </Button>
             </div>
         </div>

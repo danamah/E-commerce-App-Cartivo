@@ -9,17 +9,11 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import WhishListBtn from "./whishListBtn"
 
-export default function ProductCard({
-  product,
-}: {
-  product: ProductsI
-}) {
-
+export default function ProductCard({ product, }: { product: ProductsI }) {
   const hasDiscount =
     product.priceAfterDiscount &&
     product.priceAfterDiscount < product.price
-
-  const discountPercentage = hasDiscount
+    const discountPercentage = hasDiscount
     ? Math.round(
       ((product.price - product.priceAfterDiscount!) /
         product.price) *
@@ -52,7 +46,6 @@ export default function ProductCard({
           >
             <Repeat size={18} />
           </Button>
-
           <Link href={`/products/${product._id}`}>
             <Button
               size="icon"

@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ProductsIdType } from "@/types/productId"
 import { PackageSearch, RotateCcw, ShieldCheck, Star, Truck, TruckElectric } from "lucide-react"
 import { Progress } from "@/components/ui/progress"
+import { useTranslations } from "next-intl"
 
 
 type Props = {
@@ -11,10 +12,9 @@ type Props = {
 }
 
 export default function ProductExtraInfo({ product }: Props) {
-
+  const t = useTranslations("productDetails");
   const rating = product?.ratingsAverage || 0
   const reviewsCount = product?.ratingsQuantity || 0
-
   return (
     <div className="mt-14">
       <Tabs defaultValue="details" className="w-full">
@@ -23,66 +23,66 @@ export default function ProductExtraInfo({ product }: Props) {
             value="details"
             className="data-[state=active]:bg-background data-[state=active]:text-primary rounded-lg"
           >
-            <PackageSearch className="size-4" /> <span className="text-sm md:text-md">Product Details</span>
+            <PackageSearch className="size-4" /> <span className="text-sm md:text-md">{t("ProductDetails")}</span>
           </TabsTrigger>
           <TabsTrigger
             value="reviews"
             className="data-[state=active]:bg-background data-[state=active]:text-primary rounded-lg"
           >
-            <Star className="size-4" /><span className="text-sm md:text-md">Reviews</span>({reviewsCount})
+            <Star className="size-4" /><span className="text-sm md:text-md">{t("Reviews")}</span>({reviewsCount})
           </TabsTrigger>
           <TabsTrigger
             value="shipping"
             className="data-[state=active]:bg-background data-[state=active]:text-primary rounded-lg"
           >
-            <Truck className="size-4" /><span className="text-xs md:text-md">Shipping & Returns</span>
+            <Truck className="size-4" /><span className="text-xs md:text-md">{t("Shipping&Returns")}</span>
           </TabsTrigger>
         </TabsList>
         <TabsContent value="details" className="mt-8">
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-muted p-6 rounded-2xl">
               <h3 className="font-semibold text-lg mb-4">
-                Product Information
+                {t("ProductInformation")}
               </h3>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Category</span>
+                  <span className="text-muted-foreground">{t("Category")}</span>
                   <span>{product?.category?.name}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Subcategory</span>
+                  <span className="text-muted-foreground">{t("Subcategory")}</span>
                   <span>{product?.subcategory?.[0]?.name}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Brand</span>
+                  <span className="text-muted-foreground">{t("Brand")}</span>
                   <span>{product?.brand?.name}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Items Sold</span>
+                  <span className="text-muted-foreground">{t("ItemsSold")}</span>
                   <span>{product?.sold}</span>
                 </div>
               </div>
             </div>
             <div className="bg-muted p-6 rounded-2xl">
               <h3 className="font-semibold text-lg mb-4">
-                Key Features
+                {t("KeyFeatures")}
               </h3>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center gap-2">
                   <Star className="w-4 h-4 text-primary" />
-                  Premium Quality Product
+                  {t("PremiumQualityProduct")}
                 </li>
                 <li className="flex items-center gap-2">
                   <Star className="w-4 h-4 text-primary" />
-                  100% Authentic Guarantee
+                  {t("100%AuthenticGuarantee")}
                 </li>
                 <li className="flex items-center gap-2">
                   <Star className="w-4 h-4 text-primary" />
-                  Fast & Secure Packaging
+                  {t("Fast&SecurePackaging")}
                 </li>
                 <li className="flex items-center gap-2">
                   <Star className="w-4 h-4 text-primary" />
-                  Quality Tested
+                  {t("QualityTested")}
                 </li>
               </ul>
             </div>
@@ -95,7 +95,6 @@ export default function ProductExtraInfo({ product }: Props) {
               <h2 className="text-6xl font-bold">
                 {rating.toFixed(1)}
               </h2>
-
               <div className="flex justify-center md:justify-start gap-1">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
@@ -110,7 +109,7 @@ export default function ProductExtraInfo({ product }: Props) {
                 ))}
               </div>
               <p className="text-muted-foreground">
-                Based on {reviewsCount} reviews
+                {t("BasedOn")} {reviewsCount} {t("reviews")}
               </p>
             </div>
             <div className="space-y-4">
@@ -129,7 +128,7 @@ export default function ProductExtraInfo({ product }: Props) {
                     className="flex items-center gap-4"
                   >
                     <span className="w-12 text-sm text-muted-foreground">
-                      {star} star
+                      {star} {t("star")}
                     </span>
                     <Progress
                       value={percentage}
@@ -153,7 +152,6 @@ export default function ProductExtraInfo({ product }: Props) {
                   <p className="font-medium">
                     {review.user.name}
                   </p>
-
                   <div className="flex gap-1 my-2">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star
@@ -167,7 +165,6 @@ export default function ProductExtraInfo({ product }: Props) {
                       />
                     ))}
                   </div>
-
                   <p className="text-sm text-muted-foreground">
                     {review.review}
                   </p>
@@ -175,7 +172,7 @@ export default function ProductExtraInfo({ product }: Props) {
               ))
             ) : (
               <div className="text-center text-muted-foreground py-10">
-                No reviews yet.
+                {t("NoReviews")}
               </div>
             )}
           </div>
@@ -189,25 +186,24 @@ export default function ProductExtraInfo({ product }: Props) {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-primary mb-4">
-                    Shipping Information
+                    {t("ShippingInformation")}
                   </h3>
-
                   <ul className="space-y-3 text-sm">
                     <li className="flex items-center gap-2">
                       <span className="text-primary">✔</span>
-                      Free shipping on orders over 500 EGP
+                      {t("FreeShipping")}
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-primary">✔</span>
-                      Standard delivery: 3-5 business days
+                      {t("StandardDelivery")}
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-primary">✔</span>
-                      Express delivery available (1-2 days)
+                      {t("ExpressDelivery")}
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-primary">✔</span>
-                      Track your order in real-time
+                      {t("TrackOrder")}
                     </li>
                   </ul>
                 </div>
@@ -220,24 +216,24 @@ export default function ProductExtraInfo({ product }: Props) {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-primary mb-4">
-                    Returns & Refunds
+                    {t("Returns&Refunds")}
                   </h3>
                   <ul className="space-y-3 text-sm">
                     <li className="flex items-center gap-2">
                       <span className="text-primary">✔</span>
-                      30-day hassle-free returns
+                      {t("returns")}
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-primary">✔</span>
-                      Full refund or exchange available
+                      {t("FullRefund")}
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-primary">✔</span>
-                      Free return shipping on defective items
+                      {t("FreeReturn")}
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-primary">✔</span>
-                      Easy online return process
+                      {t("EasyOnline")}
                     </li>
                   </ul>
                 </div>
@@ -250,11 +246,10 @@ export default function ProductExtraInfo({ product }: Props) {
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-2">
-                Buyer Protection Guarantee
+                {t("BuyerProtection")}
               </h3>
               <p className="text-sm text-muted-foreground">
-                Get a full refund if your order doesn&apos;t arrive or isn&apos;t as described.
-                We ensure your shopping experience is safe and secure.
+                {t("GetRef")}
               </p>
             </div>
           </div>
