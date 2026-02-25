@@ -16,7 +16,6 @@ import { useSearchParams } from "next/navigation"
 export default function FiltersSheet({categories,brands,}: {categories: CategoryI[];brands: BrandI[];}) {
     const router = useRouter();
         const searchParams = useSearchParams();
-    
         function handleClear() {
             const params = new URLSearchParams(searchParams.toString());
             params.delete("category");
@@ -25,18 +24,6 @@ export default function FiltersSheet({categories,brands,}: {categories: Category
             router.push(`?${params.toString()}`);
         }
     return (
-        // <Sheet>
-        //     <SheetTrigger asChild>
-        //         <Button variant="outline">Filters <SlidersHorizontal /></Button>
-        //     </SheetTrigger>
-        //     <SheetContent side="left" className="w-70 p-3">
-        //         <h2 className="font-bold mb-4">Filters</h2>
-        //         <div className="ps-4">
-        //             <CategoryFilter categories={categories} />
-        //             <BrandFilter brands={brands} />
-        //         </div>
-        //     </SheetContent>
-        // </Sheet>
         <Sheet>
             <SheetTrigger asChild>
                 <Button variant="outline" className="gap-2">
@@ -44,10 +31,7 @@ export default function FiltersSheet({categories,brands,}: {categories: Category
                     <SlidersHorizontal size={18} />
                 </Button>
             </SheetTrigger>
-
-            <SheetContent side="left" className="w-[85%] sm:w-[350px] p-5 flex flex-col">
-
-                {/* Header */}
+            <SheetContent side="left" className="w-[85%] sm:w-87.5 p-5 flex flex-col">
                 <div className="flex items-center justify-between mb-4">
                     <h2 className="font-bold text-lg">Filters</h2>
                     <Button
@@ -59,13 +43,10 @@ export default function FiltersSheet({categories,brands,}: {categories: Category
                         Clear
                     </Button>
                 </div>
-
-                {/* Scroll */}
                 <div className="overflow-y-auto space-y-6 pr-2">
                     <CategoryFilter categories={categories} />
                     <BrandFilter brands={brands} />
                 </div>
-
             </SheetContent>
         </Sheet>
 
