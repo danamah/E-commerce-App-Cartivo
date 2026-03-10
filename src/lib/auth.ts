@@ -2,7 +2,7 @@ import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 
 // export async function getUserToken() {
-//     // const decodedToken = (await cookies()).get("next-auth.session-token")?.value
+   // const decodedToken = (await cookies()).get("next-auth.session-token")?.value
 //     const cookieStore = await cookies();
 //     const decodedToken =
 //         cookieStore.get("__Secure-next-auth.session-token")?.value ||

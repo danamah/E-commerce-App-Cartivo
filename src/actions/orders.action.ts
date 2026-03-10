@@ -70,15 +70,16 @@ export async function checkOutOnlineSession(cartId: string, shippingAddress: Shi
   return result;
 }
 
-export async function getUserOrders(): Promise<Order[]> {
+export async function getUserOrders(userId: string): Promise<Order[]> {
   const token = await getUserToken();
 
-  if (!token) {
-    console.error("No token found - user not authenticated");
+  if (!token || !userId) {
+    console.error("Missing token or userId");
     return [];
   }
+
   try {
-    const response = await fetch(`${API_URL}/orders`, {
+    const response = await fetch(`${API_URL}/orders/user/${userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -86,14 +87,23 @@ export async function getUserOrders(): Promise<Order[]> {
       },
       cache: "no-store",
     });
+
     if (!response.ok) {
-      console.error("Failed to fetch orders:", response.status);
+      const errorText = await response.text();
+      console.error(`Failed to fetch orders: ${response.status} - ${errorText}`);
       return [];
     }
+
     const data = await response.json();
+
+    if (Array.isArray(data)) {
+      return data;
+    }
+
     if (Array.isArray(data?.data)) {
       return data.data;
     }
+
     console.warn("Orders data is not an array:", data);
     return [];
   } catch (error) {
